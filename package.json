@@ -1,0 +1,11 @@
+{
+  "name": "com.liz.createassetwindow",
+  "version": "1.0.0",
+  "displayName": "Create Asset Window",
+  "description": "Alternative to the New Asset Context menu with the search input field",
+  "unity": "6000.0",
+  "author": {
+    "name": "Lizzardman"
+  }
+}
+
