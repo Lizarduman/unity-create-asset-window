@@ -33,17 +33,38 @@ namespace CreateAssetTool.Editor {
 
         private static void OnProjectWindowGUI(string guid, Rect selectionRect) {
             if (guid == _targetFolderGuid) {
-                float marginRight = 6f;
+                float marginRight = 3f;
                 float buttonWidth = selectionRect.height;
                 float buttonHeight = selectionRect.height;
-                Rect buttonRect = new Rect(
+                // create asset window
+                Rect buttonRect = new(
+                    selectionRect.x + selectionRect.width - buttonWidth*3 - marginRight*3,
+                    selectionRect.y,
+                    buttonWidth,
+                    buttonHeight
+                );
+                if (GUI.Button(buttonRect, EditorGUIUtility.IconContent("CreateAddNew"), GUI.skin.FindStyle("IconButton"))) {
+                    CreateAssetEditorWindow.OpenSearchWindow();
+                }
+                // create folder
+                Rect buttonNewFolderRect = new(
+                    selectionRect.x + selectionRect.width - buttonWidth*2 - marginRight*2,
+                    selectionRect.y,
+                    buttonWidth,
+                    buttonHeight
+                );
+                if (GUI.Button(buttonNewFolderRect, EditorGUIUtility.IconContent("d_Folder Icon"), GUI.skin.FindStyle("IconButton"))) {
+                    EditorApplication.ExecuteMenuItem("Assets/Create/Folder");
+                }
+                // create script
+                Rect buttonNewScriptRect = new(
                     selectionRect.x + selectionRect.width - buttonWidth - marginRight,
                     selectionRect.y,
                     buttonWidth,
                     buttonHeight
                 );
-                if (GUI.Button(buttonRect, "+", EditorStyles.miniButton)) {
-                    CreateAssetEditorWindow.OpenSearchWindow();
+                if (GUI.Button(buttonNewScriptRect, EditorGUIUtility.IconContent("cs Script Icon"), GUI.skin.FindStyle("IconButton"))) {
+                    EditorApplication.ExecuteMenuItem("Assets/Create/Scripting/Empty C# Script");
                 }
             }
         }
